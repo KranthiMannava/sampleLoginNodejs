@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Header iNet</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">  
+
+	<link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
+	<link href="css/font-awesome.min.css" rel="stylesheet" type="text/css">
+	<link href="css/common.css" rel="stylesheet" type="text/css">
+	
+    <script src="js/jquery-2.2.3.min.js"></script>
+	<script src="js/jquery-ui.min.js"></script>
+	<script src="js/jquery.ui.touch.js"></script> 
+	<script src="js/bootstrap.min.js"></script>	
+ <!-- <script type="javascript/text" language="javascript">
+	$(document).ready(function(){
+	window.history.forward(1);
+	}
+	</script>  -->
+	<script type="text/javascript" language="javascript">   
+window.history.forward();
+    function noBack() { window.history.forward(); }
+</script>
+<style>
+body,html,ul,li,p,h1,h2,h3,h4,h5,h6,a{
+	padding:0;
+	margin:0;
+	font-family:Arial,Helvetica,sans-serif;	
+}
+.map{	
+	width:100%;
+	height:100%;
+	z-index:-1;
+	position:absolute;
+	left:0;
+	top:0;	
+}
+.dummyHeader{
+	width:100%;
+	height:50px;
+	border:1px solid red;
+}
+.footer{
+	background:rgba(0,0,0,0.8);
+	height:10px;
+	width:100%;
+	position:fixed;
+	left:0;
+	bottom:0;	
+}
+.navbar-brand{
+	margin-left:25px;
+}
+.navbar-brand img{
+	margin-top:-10px;
+	margin-right:10px;
+	display:inline-block!important;
+}
+.navbar-right{
+	margin-right:25px;
+}
+
+/* Sidemenu styles */
+
+.sideMenu{
+	width:300px;
+	height:100%;
+	position:absolute;
+	z-index: 4;
+	left:-300px;
+	top:0px;
+	background:rgba(46,47,58,0.8);
+	-webkit-transition: ease-out 0.2s; 
+	-moz-transition: ease-out 0.2s; 
+	-o-transition: ease-out 0.2s; 
+}
+.slideBtn{
+    position: absolute;
+    top: 45%;
+    right: -20px;
+    z-index: 4;
+    background: rgba(46,47,58,1);
+	height:60px;
+	padding: 15px 3px;
+	border:none;
+	outline:none;
+	border-top-right-radius:25%;
+	border-bottom-right-radius:25%;	
+}
+.slideBtn:hover{
+	background:rgba(46,47,58,1);
+	opacity:0.8;
+}
+.slideLeft {
+    left: 0px;
+	-webkit-transition: ease-out 0.3s; 
+	-moz-transition: ease-out 0.3s; 
+	-o-transition: ease-out 0.3s; 
+}
+
+/* Accordion Styles */
+
+h4.panel-title a{
+	display:block;
+	text-decoration:none;
+	font-size:13px;
+}
+h4.panel-title a span{	
+	color:#000;
+	margin-left:35%;
+} 
+h4.panel-title i{
+	color:#444;
+	font-size:20px;
+	margin-right:10px;
+}
+#accordion{
+	padding:10px;
+	margin-top:60px;
+}
+.panel-heading .accordion-toggle:after {
+    font-family: 'Glyphicons Halflings';
+    content: "\e114";
+	float:right;
+}
+.panel-heading .accordion-toggle.collapsed:after {
+    content: "\e080";
+}
+.panel-info {
+    border-color: #ccc!important;
+}
+.panel-info>.panel-heading+.panel-collapse>.panel-body {
+    border-top-color: ##ccc!important;
+}
+.panel-info>.panel-heading {
+    color: #000;
+    background-color:#eee; /*#d9edf7;*/
+    border-color:#ccc; /* #bce8f1;*/
+}
+.panel-body ul li{
+	list-style-type:none;
+	border-bottom:1px solid #ddd;
+	background:#ccc;
+	line-height:3;
+}
+.panel-body ul li a{
+	text-decoration:none;
+	display:block;
+	color:#444;
+	padding-left:20px;
+}
+.mainButtons{
+	position:relative;	
+	width:100%;
+	height:90vh;
+	padding:5px;
+	text-align:center;
+}
+.mainButtons ul li{
+	list-style-type:none;
+	display:inline-block;
+}
+.resetBtn{
+	position:absolute;
+	bottom:60px;
+	right:5px;
+}
+/* Footer Section */
+.mobFooter{
+	width:100%;
+	position:fixed;
+	bottom:0;
+	left:0;
+	right:0;
+	z-index:10;
+}
+.mobFooter> nav {
+    display: table;
+    table-layout: fixed;
+    width: 100%;
+	padding:0;
+	margin:0;
+}
+
+.mobFooter >nav >ul {
+    display: table-row;
+    margin: 0;
+    padding: 0;
+}
+
+.mobFooter> nav > ul > li {
+    list-style: none;
+    display: table-cell;
+    text-align: center;
+	border-right:1px solid #fff;	
+}
+.mobFooter> nav > ul > li:last-child{
+	border-right:none;	
+}
+
+.mobFooter> nav > ul > li > a {
+    display: block;
+	color:#FFF;
+	padding:10px 0px;	
+	text-decoration:none;
+	font-size:12px;
+	
+	height:50px;
+	color:#fff;
+ 	background: rgba(46,47,58,1);
+}
+.mobFooter .fa{color:#FFF;}
+
+.mobFooter a:hover,
+.mobFooter a:active,
+.mobFooter a:focus{
+	background-color:orange;	
+	font-weight:bold;
+}
+.drop-up {
+    top: auto;
+    bottom: 100% !important;
+}
+</style>
+
+<script>
+
+		$(document).ready(function(){
+		
+		$.ajax({
+			url:"http://127.0.0.1:3000/process_post/getCurrentUser",
+			type:"GET",
+			async:false,
+			success:function(data){
+			currentuser
+			if (data !== null) {
+						
+						 var obj = JSON.parse(data);
+   
+						$("#currentuser").text("Welcome "+obj.user);
+						
+					}
+			}
+			});
+		
+		});
+		function formSubmit() {
+			$.ajax({
+			url:"http://127.0.0.1:3000/process_post/logout",
+			type:"GET",
+			async:false,
+			success:function(data){
+			window.location.href="/";
+			}
+			});
+		}
+							
+		function save() {
+
+			//$("#btnSave").prop("disabled", true);
+
+			var projectName = $("#projectName").val();
+
+			var status = $("#status").val();
+
+			var address = $("#address").val();
+
+			var element = this;
+			var project = {
+				projectName : projectName,
+				status : status,
+				address : address
+			};
+
+			$.ajax({
+				url : "http://127.0.0.1:3000/process_post/add_project",
+				type : "POST",
+				data : project,
+				//contentType : 'application/json; charset=utf-8',
+				//dataType : 'json',
+				async : false,
+				success : function(data) {
+					if (data !== null) {
+						alert("Project Added");
+						$('#createModal').modal('toggle');
+						 var obj = JSON.parse(data);
+   
+						//alert(obj.projectName);
+						$("#valProjectName").text(obj.projectName);
+						$("#valProjectStatus").text(obj.status);
+						$("#valProjectOwner").text(obj.user);
+						$("#valProjectAddress").text(obj.address);
+					
+					}
+				},
+				error : function(data2) {
+					alert(data2);
+					alert('Error occured');
+
+				}
+			});
+
+		}
+</script>
+
+
+
+</head>
+<body>
+<!-- Header -->
+<nav class = "navbar navbar-inverse navbar-fixed-top" role = "navigation">   
+   <div class = "navbar-header">
+      <a class = "navbar-brand" href = "#"><img src="images/DG_Logo.png" />Deutsche Glasfaser</a>
+   </div>
+
+    <ul class = "nav navbar-nav navbar-right">
+       <c:if test="${pageContext.request.userPrincipal.name != null}">
+       <li><a  style="border-right:1px solid #fff" id="currentuser"></a></li>
+        <li><a href = "javascript:formSubmit()">Logout</a></li>
+        </c:if>
+    </ul>
+</nav>
+<div class="dummyHeader"></div>
+<!-- Map -->
+	<div class="map" id="map"></div>
+<div class="container-fluid">	
+<!-- Main Buttons -->	
+<div class="mainButtons">
+	<ul>
+		<li class="dragTest"><button class="btn-success btn-sm" data-toggle="modal" data-target="#createModal"><i class="fa fa-plus-square-o fa-2x" aria-hidden="true" ></i></button></li>
+		<li class="dragTest" aria-hidden="true"><button class="btn-success btn-sm"><i class="fa fa-folder-open-o fa-2x"></i></button></li>
+		<li class="dragTest"><button class="btn-success btn-sm" data-toggle="modal" data-target="#modifyModal"><i class="fa fa-pencil-square-o fa-2x" aria-hidden="true"></i></button></li>
+	</ul>
+</div>
+	<button class="btn-sm btn-danger resetBtn"><i class="fa fa-refresh fa-2x"></i></button>
+<!-- Left sidebar content Start-->
+<div class="sideMenu">	
+	<div class="left_sidebar">
+		
+<!-- left Accordion -->
+<div id="accordion" class="panel-group">
+    <div class="panel panel-info">
+        <div class="panel-heading">
+            <h4 class="panel-title">
+				<a data-toggle="collapse" class="accordion-toggle" data-parent="#accordion" href="#collapseOne">Current Project</a>
+            </h4>
+			
+		</div>
+        <div id="collapseOne" class="panel-collapse collapse">
+            <div class="panel-body">
+				<ul>
+					<li><label id="lblProjectName">Project Name:</label><a id="valProjectName" value=""></a></li>
+					<li><label id="lblProjectStatus"> Status: </label><a id="valProjectStatus" value=""></a></li>
+					<li><label id="lblProjectOwner">Created by: </label><a id="valProjectOwner" value=""></a></li>
+					<li><label id="lblProjectAddress">Address: </label> <a id="valProjectAddress" value=""></a></li> 
+				</ul>
+            </div>
+        </div>
+    </div>
+<!--     <div class="panel panel-info">
+        <div class="panel-heading">
+            <h4 class="panel-title">
+                <a data-toggle="collapse" class="accordion-toggle"  data-parent="#accordion" href="#collapseTwo">Title-2</a>
+            </h4>
+        </div>
+        <div id="collapseTwo" class="panel-collapse collapse">
+            <div class="panel-body">
+                <ul>
+					<li><a href="#"></a></li>
+					<li><a href="#">Sub menu2</a></li>
+					<li><a href="#">Sub menu3</a></li>					
+				</ul>
+            </div>
+        </div>
+    </div>
+    <div class="panel panel-info">
+        <div class="panel-heading">
+            <h4 class="panel-title">
+            <a data-toggle="collapse" class="accordion-toggle"  data-parent="#accordion" href="#collapseThree">Title-3</a>
+            </h4>
+        </div>
+        <div id="collapseThree" class="panel-collapse collapse">
+            <div class="panel-body">
+                
+            </div>
+        </div>
+    </div> -->
+</div>	
+	</div>
+	<p class="btn btn-info btn-sm slideBtn"><i class="fa fa-angle-double-right fa-2x"></i></p>
+</div>
+</div><!-- container fluid -->
+
+<!-- footer -->
+ <div class="mobFooter">
+	<nav>
+	<ul>
+		<li><a href="#home"><i class="fa fa-home fa-2x" class="active"></i><br>Home</a></li>
+		<li><a href="#Profile1"><i class="fa fa-user fa-2x"></i><br>Profile1</a></li>
+		<li><a href="#Profile2"><i class="fa fa-users fa-2x"></i><br>Profile2</a></li>	
+		<li><a href="#Profile3"><i class="fa fa-user fa-2x"></i><br>Profile3</a></li>	
+	</ul>
+	</nav>
+</div>
+<!-- Create Modal -->
+<!-- <form action = "http://127.0.0.1:8085/process_post/add_project" method = "POST"> -->
+<form>
+<div class="modal fade" id="createModal" data-backdrop="static" data-keyboard="false">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+			<button class="close" data-dismiss="modal">&times;</button>
+                <h4 id="Heading">Create Project</h4>
+			</div>
+
+		<div class="modal-body" style="max-height:70vh; overflow:auto">
+			<table class="table table-bordered table-striped table-hover table-responsive">
+			
+				<tr>
+					<td><label>Project Name</label></td>
+					<td><input id="projectName" type="text" name="projectName" class="form-control" placeholder="Project Name" required/></td>
+				</tr>
+				
+				<tr>
+					<td><label>Status</label></td>
+					<td><input id="status" type="text" name="status" class="form-control" placeholder="Status" required/></td>
+				</tr>
+			
+				<tr>
+					<td><label>Address</label></td>
+					<td><textarea rows="4" name="address" class="form-control" id="address"></textarea></td>
+				</tr>
+			</table>
+		</div>
+				<div class="modal-footer">
+					<!-- <input class="btn btn-info btn-sm" id="btnSave" type="submit" name="Save" value="Save" /> -->
+					<input class="btn btn-info btn-sm" id="btnSave" onClick="save()"
+							 name="Save" value="Save" />
+					<!--  <button class="btn btn-info btn-sm"> Create</button> -->
+					<button class="btn btn-warning btn-sm" data-dismiss="modal">Cancel</button>
+				</div>
+				
+
+		</div>
+	</div>
+
+</div>
+</form>
+<!-- Modify Modal -->
+<div class="modal fade" id="modifyModal" data-backdrop="static" data-keyboard="false">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+			<button class="close" data-dismiss="modal">&times;</button>
+                <h4 id="Heading">Modify Project</h4>
+			</div>
+			<div class="modal-body">
+			</div>
+			<div class="modal-footer">
+				<button class="btn btn-info btn-sm"> Modify</button>
+				<button class="btn btn-warning btn-sm" data-dismiss="modal">Cancel</button>
+			</div>
+		</div>
+	</div>
+</div>
+			
+<script>
+//Google Map
+function myMap() {
+  var mapCanvas = document.getElementById("map");
+  var mapOptions = {
+    center: new google.maps.LatLng(17.5, 78.5), zoom: 10
+  };
+  var map = new google.maps.Map(mapCanvas, mapOptions);
+}
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?callback=myMap"></script>
+
+<script>
+$(document).ready(function(){	
+	$(".slideBtn").click(function(){			
+		$(this).html($(this).html() == '<i class="fa fa-angle-double-left fa-2x"></i>' ? '<i class="fa fa-angle-double-right fa-2x"></i>' : '<i class="fa fa-angle-double-left fa-2x"></i>');			
+		$(".sideMenu").toggleClass("slideLeft");
+	});	
+});
+</script>
+<script>
+  $(document).ready(function(){
+    $('.dragTest').draggable({ 
+		cancel: false, 
+		containment: ".container-fluid",
+		scroll:false,
+		cursor:"crosshair"
+		});
+  	$('.resetBtn').on("click",function(){	
+	$('.dragTest').animate({left:0, top:0});
+	});
+});
+</script>
+
+</body>
+</html>
